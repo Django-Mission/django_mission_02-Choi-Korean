@@ -18,9 +18,9 @@ class Faq(models.Model):
     inquiries = models.CharField(max_length=3, choices=INQUIRIES_CHOICES, default='일반')
     content = models.TextField(verbose_name='내용')
     created_at = models.DateTimeField(verbose_name='작성일', auto_now_add=True) # auto_now_add=True : 게시글 작성시 자동 날짜 입력
+    modified_on = models.DateTimeField(auto_now=True)
     writer = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
-    modifier = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
-    modified_at = models.DateTimeField(verbose_name='수정일', auto_now=True)
+    # modifier = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
 
 class FaqComment(models.Model):
     content = models.TextField(verbose_name='내용')
@@ -35,10 +35,10 @@ class PersonalFaq(models.Model):
         ('기타', 'ect'),
     ]
     inquiries = models.CharField(max_length=3, choices=INQUIRIES_CHOICES, default='일반')
-    head = models.TextField(verbose_name='제목')
+    head = models.TextField(verbose_name='제목', default='')
     content = models.TextField(verbose_name='내용')
-    email = models.CharField(max_length=3, verbose_name='이메일')
-    phone_number = models.CharField(max_length=3, verbose_name='전화번호')
+    email = models.CharField(max_length=3, verbose_name='이메일', default=None)
+    phone_number = models.CharField(max_length=3, verbose_name='전화번호', default=None)
     image = models.ImageField(verbose_name='이미지', null=True, blank=True) # verbose_name : 관리자나 폼 등 일반 사용자쪽 페이지에 노출될 필드에 대한 이름 지정
     created_at = models.DateTimeField(verbose_name='작성일', auto_now_add=True) # auto_now_add=True : 게시글 작성시 자동 날짜 입력
     writer = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
