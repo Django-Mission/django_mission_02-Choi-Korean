@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Faq, FaqComment, PersonalFaq, PersonalComment
+from .models import Faq, PersonalFaq, PersonalComment
 
 # Create your views here.
 
